@@ -1,0 +1,11 @@
+body{
+    background-image: url("nationalpark.jpg");
+}
+
+.container{
+    padding: 30px;
+}
+.dropdown-trigger{
+
+    width: 100%;
+}
