@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+√<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,18 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
     <title>National Park Planner</title>
 </head>
 
 <body>
     <div class="container">
-            <div class="row">
-                <div class="dropdownBtn col s3">
+        <div class="row">
+            <div class="dropdownBtn col s3">
                 <!-- Dropdown Trigger -->
-                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Pick a State</a>
+                <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Pick a State</a>
                 <!-- Dropdown Structure -->
-                    <ul id='dropdown1' class='dropdown-content'>
+                <ul id='dropdown1' class='dropdown-content'>
                     <li><a stateIndex="al">Alabama</a></li>
                     <li class="divider" tabindex="-1"></li>
                     <li><a stateIndex="ak">Alaska</a></li>
@@ -118,25 +120,63 @@
                     <li><a stateIndex="wi">Wisconsin</a></li>
                     <li class="divider" tabindex="-1"></li>
                     <li><a stateIndex="wy">Wyoming</a></li>
-                    </ul>
-                </div>
-                <div class="collapsibleDiv col s9">
-                        <ul class="collapsible">
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons"></i>Park Info</div>
-                            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons"></i>Weather Forecast</div>
-                            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons"></i>Events</div>
-                            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                        </li>
-                    </ul>
-                </div>
+                </ul>
             </div>
+            <div class="collapsibleDiv col s9">
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Park Info</div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Weather Forecast</div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div id="day1" class="card col s12 col m5 col l3 col xl2">
+                                    <div id="tempDiv1" class="tempDiv"></div>
+                                    <br>
+                                    <div id="weatherDiv1"></div>
+                                    <br>
+                                    <div id="windSpeedDiv1" class="windSpeedDiv"></div>
+                                </div>
+                                <div id="day2" class="card col s12 col m5 col l3 col xl2">
+                                    <div id="tempDiv2" class="tempDiv"></div>
+                                    <br>
+                                    <div id="weatherDiv2"></div>
+                                    <br>
+                                    <div id="windSpeedDiv2" class="windSpeedDiv"></div>
+                                </div>
+                                <div id="day3" class="card col s12 col m5 col l3 col xl2">
+                                    <div id="tempDiv3" class="tempDiv"></div>
+                                    <br>
+                                    <div id="weatherDiv3"></div>
+                                    <br>
+                                    <div id="windSpeedDiv3" class="windSpeedDiv"></div>
+                                </div>
+                                <div id="day4" class="card col s12 col m5 col l3 col xl2">
+                                    <div id="tempDiv4" class="tempDiv"></div>
+                                    <br>
+                                    <div id="weatherDiv4"></div>
+                                    <br>
+                                    <div id="windSpeedDiv4" class="windSpeedDiv"></div>
+                                </div>
+                                <div id="day5" class="card col s12 col m5 col l3 col xl2">
+                                    <div id="tempDiv5" class="tempDiv"></div>
+                                    <br>
+                                    <div id="weatherDiv5"></div>
+                                    <br>
+                                    <div id="windSpeedDiv5" class="windSpeedDiv"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Events</div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 
