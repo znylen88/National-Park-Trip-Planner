@@ -5,9 +5,16 @@ body{
 .container{
     padding: 30px;
 }
-.dropdown-trigger{
-
+.stateDropdown{
+    box-shadow: 2px 5px lightgray;
     width: 100%;
+}
+.collapsibleDiv{
+    width: 100%;
+    
+}
+.collapsible-body{
+    background-color: rgba(255,255,255,.5)
 }
 
 .card {
