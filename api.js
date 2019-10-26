@@ -30,15 +30,15 @@ console.log(this.value);
     $.ajax({
         url: nationlParkQueryURL,
         method: "GET"
-    }).then(function (response) {
+    }).then(function (response1) {
         // console.log(response);
         // console.log(response.data[0].latLong);
-        var latLong = response.data[0].latLong;
+        var latLong = response1.data[0].latLong;
         var lat = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
         console.log(lat);
         var long = latLong.slice(latLong.indexOf(':', latLong.indexOf(':') + 1) + 1);
         console.log(long);
-        console.log(response)
+        console.log(response1)
 
 
 
