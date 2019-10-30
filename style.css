@@ -7,6 +7,10 @@ body{
     background-image: url("assets/nationalpark.jpg");
 }
 
+.btn {
+    background-color: orange;
+}
+
 .container{
     padding: 30px;
 }

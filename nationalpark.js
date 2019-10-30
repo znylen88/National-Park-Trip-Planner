@@ -90,9 +90,10 @@ $(".stateDropdown").on("change", function (e) {
 
       var cardAction = $("<div class='card-action'></div>");
       var cardBtn = $("<button>Select</button>");
-      $(cardBtn).attr("class", "selectBtn");
+      $(cardBtn).attr("class", "selectBtn btn waves-effect waves-light");
       $(cardBtn).attr("lat", lat);
       $(cardBtn).attr("long", long);
+      $(cardBtn).attr("style", "width: 50%;");
       $(cardBtn).attr("parkCode", parkCode);
       $(cardAction).append(cardBtn);
       $(cardDiv).append(cardAction);
@@ -276,7 +277,7 @@ $(".stateDropdown").on("change", function (e) {
           var containerDiv = $("<div class='s12 scrollsSpy'></div>");
     
           var cardDiv = $("<div class='card horizontal'></div>")
-          $(cardDiv).attr("style", "display: flex; flex-direction: column;")
+          $(cardDiv).attr("style", "padding: 15px; display: flex; flex-direction: column;")
     
           var titleDiv = $("<div>")
           var cardTitle = $("<h6>").text(response3.data[i].title);
@@ -287,7 +288,7 @@ $(".stateDropdown").on("change", function (e) {
     
           var cardContent = $("<div class='card-content'></div>");
     
-          var parkInfo = $("<p>").text(response3.data[i].description);
+          var parkInfo = $("<p>").html(response3.data[i].description);
           $(cardContent).append(parkInfo);
           $(cardStackedDiv).append(cardContent);
           $(cardDiv).append(cardStackedDiv);
@@ -303,7 +304,23 @@ $(".stateDropdown").on("change", function (e) {
           $(containerDiv).append(cardDiv);
           $(".eventInfoHere").prepend(containerDiv);
 
-
+          if (response3.total === "0") {
+            var containerDiv = $("<div class='s12 scrollsSpy'></div>");
+    
+          var cardDiv = $("<div class='card horizontal'></div>")
+          $(cardDiv).attr("style", "padding: 15px; display: flex; flex-direction: column;")
+    
+          var titleDiv = $("<div>")
+          var cardTitle = $("<h6>").text("No Events!");
+          $(cardDiv).append(cardTitle);
+  
+    
+          var cardAction = $("<div class='card-action'></div>");
+          $(cardDiv).append(cardAction);
+    
+          $(containerDiv).append(cardDiv);
+          $(".eventInfoHere").prepend(containerDiv);
+          }
     
         }
       })
