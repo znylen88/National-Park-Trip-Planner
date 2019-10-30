@@ -47,13 +47,13 @@ $(".stateDropdown").on("change", function (e) {
   }).then(function (response) {
     console.log(response);
     // console.log(response2.data[0].latLong);
-// for (var i = 0; i < response.data[i]; i++) {
-//       var latLong = response.data[i].latLong;
-//       var lat = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
-//       console.log(lat);
-//       var long = latLong.slice(latLong.indexOf(':', latLong.indexOf(':') + 1) + 1);
-//       console.log(long);
-// }
+for (var i = 0; i < response.data[i]; i++) {
+      var latLong = response.data[i].latLong;
+      var lat = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
+      console.log(lat);
+      var long = latLong.slice(latLong.indexOf(':', latLong.indexOf(':') + 1) + 1);
+      console.log(long);
+}
 
 
     for (var i = 0; i < response.data.length; i++) {
@@ -69,7 +69,7 @@ $(".stateDropdown").on("change", function (e) {
       var cardImgDiv = $("<div class='card-image'></div>");
       var cardImg = $("<img>");
       $(cardImg).attr("src", response.data[i].images[0].url);
-      (cardImg).attr("style", "margin: auto;");
+      $(cardImgDiv).attr("style", "display: contents; margin-left: auto; margin-right: auto; width: 50%;");
       $(cardImgDiv).append(cardImg);
       $(cardDiv).append(cardImgDiv);
 
@@ -97,13 +97,11 @@ $(".stateDropdown").on("change", function (e) {
     }
 
     $("selectBtn").on("click", function(e) {
-
-      var lat = 41;
-      var long= 41;
+      
     var openWeatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&APPID=e2ebd3f5faa1edbbcedec73ed5986c0f";
 
     $.ajax({
-      url: openWeatherQueryURL,
+      url: openWeatherQueryURL2,
       method: "GET"
     }).then(function (response2) {
 
