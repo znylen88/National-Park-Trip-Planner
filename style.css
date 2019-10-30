@@ -30,7 +30,7 @@ body{
 
 .collapsible-body{
     background-color: rgba(255,255,255,.5);
-    max-height: 50vh;
+    max-height: 65vh;
     overflow: auto;
 }
 .input-field{
