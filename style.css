@@ -13,7 +13,7 @@ body{
 .stateDropdown{
     box-shadow: 2px 5px lightgray;
     width: 100%;
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-name: slidein;
 }
 @keyframes slidein {
