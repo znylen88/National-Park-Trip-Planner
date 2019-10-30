@@ -60,6 +60,7 @@ $(".stateDropdown").on("change", function (e) {
       var containerDiv = $("<div class='s12 scrollsSpy'></div>");
 
       var cardDiv = $("<div class='card horizontal'></div>")
+      $(cardDiv).attr("style", "display: flex; flex-direction: column;")
 
       var titleDiv = $("<div>")
       var cardTitle = $("<h6>").text(response.data[i].name);
@@ -68,6 +69,7 @@ $(".stateDropdown").on("change", function (e) {
       var cardImgDiv = $("<div class='card-image'></div>");
       var cardImg = $("<img>");
       $(cardImg).attr("src", response.data[i].images[0].url);
+      (cardImg).attr("style", "margin: auto;");
       $(cardImgDiv).append(cardImg);
       $(cardDiv).append(cardImgDiv);
 
@@ -83,7 +85,7 @@ $(".stateDropdown").on("change", function (e) {
 
       var cardAction = $("<div class='card-action'></div>");
       var cardBtn = $("<button>Select</button>");
-      $(cardBtn).attr("class", "selectBtn")
+      $(cardBtn).attr("class", "selectBtn");
       $(cardAction).append(cardBtn);
       $(cardDiv).append(cardAction);
 
