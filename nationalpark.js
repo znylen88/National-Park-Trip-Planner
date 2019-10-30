@@ -37,7 +37,7 @@ $(".stateDropdown").on("change", function (e) {
 
 
   var stateCode = this.value
-  var nationlParkQueryURL = "https://developer.nps.gov/api/v1/parks?stateCode=" + stateCode + "&fields=images&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR";
+  var nationlParkQueryURL = "https://developer.nps.gov/api/v1/parks?q=national%20park&stateCode=" + stateCode + "&fields=images&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR";
 
 
 
@@ -79,19 +79,21 @@ $(".stateDropdown").on("change", function (e) {
 
       var parkInfo = $("<p>").text(response.data[i].description);
       $(cardContent).append(parkInfo);
-      $(cardStackedDiv).append(cardContent)
+      $(cardStackedDiv).append(cardContent);
       $(cardDiv).append(cardStackedDiv);
 
       var latLong = response.data[i].latLong;
       var lat = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
       var long = latLong.slice(latLong.indexOf(':', latLong.indexOf(':') + 1) + 1);
 
+      var parkCode = response.data[i].parkCode;
 
       var cardAction = $("<div class='card-action'></div>");
       var cardBtn = $("<button>Select</button>");
       $(cardBtn).attr("class", "selectBtn");
       $(cardBtn).attr("lat", lat);
-      $(cardBtn).attr("long", long)
+      $(cardBtn).attr("long", long);
+      $(cardBtn).attr("parkCode", parkCode);
       $(cardAction).append(cardBtn);
       $(cardDiv).append(cardAction);
 
@@ -260,6 +262,49 @@ $(".stateDropdown").on("change", function (e) {
         }
         if ((response2.list[36].weather[0].main) === "Windy") {
           $("#weatherDiv5").html(" " + '<i class="fas fa-wind fa-3x">');
+        }
+
+
+      })
+      var nationlParkQueryURL2 = "https://developer.nps.gov/api/v1/events?parkCode=" + parkCode + "&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR"
+      $.ajax({
+        url: nationlParkQueryURL2,
+        method: "GET"
+      }).then(function (response3) {
+        console.log(response3)
+        for (var i = 0; i < 5; i++) {
+          var containerDiv = $("<div class='s12 scrollsSpy'></div>");
+    
+          var cardDiv = $("<div class='card horizontal'></div>")
+          $(cardDiv).attr("style", "display: flex; flex-direction: column;")
+    
+          var titleDiv = $("<div>")
+          var cardTitle = $("<h6>").text(response3.data[i].title);
+          $(cardDiv).append(cardTitle);
+    
+    
+          var cardStackedDiv = $("<div class='card-stacked'></div>");
+    
+          var cardContent = $("<div class='card-content'></div>");
+    
+          var parkInfo = $("<p>").text(response3.data[i].description);
+          $(cardContent).append(parkInfo);
+          $(cardStackedDiv).append(cardContent);
+          $(cardDiv).append(cardStackedDiv);
+
+          var parkInfo2 = $("<p>").text("Date: " + response3.data[i].recurrencedateend);
+          $(cardContent).append(parkInfo2);
+          $(cardStackedDiv).append(cardContent);
+          $(cardDiv).append(cardStackedDiv);
+    
+          var cardAction = $("<div class='card-action'></div>");
+          $(cardDiv).append(cardAction);
+    
+          $(containerDiv).append(cardDiv);
+          $(".eventInfoHere").prepend(containerDiv);
+
+
+    
         }
       })
     })
