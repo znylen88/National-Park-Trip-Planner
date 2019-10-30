@@ -282,10 +282,12 @@ $(".stateDropdown").on("change", function (e) {
           var cardDiv = $("<div class='card horizontal'></div>")
           $(cardDiv).attr("style", "padding: 15px; display: flex; flex-direction: column;")
 
+          var noEventsIcon = $("<i class='large material-icons right'>report_problem</i>");
           var titleDiv = $("<div>")
           var cardTitle = $("<h6>").text("No Events!");
           $(cardDiv).append(cardTitle);
-
+          $(cardDiv).append(noEventsIcon);
+          $(noEventsIcon).attr("style", "contents; display: flex; flex-direction: column; margin-left: auto; margin-right: auto;");
 
           var cardAction = $("<div class='card-action'></div>");
           $(cardDiv).append(cardAction);
