@@ -7,10 +7,6 @@ body{
     background-image: url("assets/nationalpark.jpg");
 }
 
-.btn {
-    background-color: orange;
-}
-
 .container{
     padding: 30px;
 }
@@ -32,10 +28,6 @@ body{
     }
   }
 
-.collapsibleDiv{
-    width: 100%;
-    
-}
 .collapsible-body{
     background-color: rgba(255,255,255,.5);
     max-height: 50vh;
