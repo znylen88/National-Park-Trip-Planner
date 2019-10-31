@@ -103,11 +103,10 @@ $(".stateDropdown").on("change", function (e) {
       $(containerDiv).append(cardDiv);
       $(".parkInfoHere").prepend(containerDiv);
 
-
-
     }
 
     $(".selectBtn").on("click", function (e) {
+
       var openWeatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&APPID=e2ebd3f5faa1edbbcedec73ed5986c0f";
 
       $.ajax({
@@ -116,158 +115,218 @@ $(".stateDropdown").on("change", function (e) {
       }).then(function (weatherData) {
 
         console.log(weatherData);
-        var degreesFar = (weatherData.list[4].main.temp - 273.15) * 1.80 + 32;
-        var degreesFarRounded = Math.round(degreesFar * 10) / 10;
 
         // Day 1 Forecast
 
-        $("#tempDiv1").text(degreesFarRounded + " °F");
-        $("#windSpeedDiv1").text(weatherData.list[4].wind.speed + " MPH");
+        for (var i = 0; i < weatherData.list.length - 32; i++) {
+          var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
+          var degreesFarRounded = Math.round(degreesFar * 10) / 10;
 
-        if ((weatherData.list[4].weather[0].main) === "Clouds") {
-          $("#weatherDiv1").html(" " + '<i class="fas fa-cloud fa-3x">');
-        }
-        if ((weatherData.list[4].weather[0].main) === "Clear") {
-          $("#weatherDiv1").html(" " + '<i class="fas fa-sun fa-3x">');
-        }
-        if ((weatherData.list[4].weather[0].main) === "Rain") {
-          $("#weatherDiv1").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
-        }
-        if ((weatherData.list[4].weather[0].main) === "Snow") {
-          $("#weatherDiv1").html(" " + '<i class="far fa-snowflake fa-3x">');
-        }
-        if ((weatherData.list[4].weather[0].main) === "Fog") {
-          $("#weatherDiv1").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[4].weather[0].main) === "Mist") {
-          $("#weatherDiv1").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[4].weather[0].main) === "Windy") {
-          $("#weatherDiv1").html(" " + '<i class="fas fa-wind fa-3x">');
+          var timeSlice = weatherData.list[i].dt_txt.slice(11);
+
+          // console.log(weatherData.list[i].dt_txt);
+          // console.log(degreesFarRounded);
+          // console.log(weatherData.list[i].weather[0].main);
+          // console.log(weatherData.list[i].wind.speed);
+
+          if (timeSlice === "18:00:00") {
+
+            $("#tempDiv1").text(degreesFarRounded + " °F");
+            $("#windSpeedDiv1").text(weatherData.list[i].wind.speed + " MPH");
+
+            if ((weatherData.list[i].weather[0].main) === "Clouds") {
+              $("#weatherDiv1").html(" " + '<i class="fas fa-cloud fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Clear") {
+              $("#weatherDiv1").html(" " + '<i class="fas fa-sun fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Rain") {
+              $("#weatherDiv1").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Snow") {
+              $("#weatherDiv1").html(" " + '<i class="far fa-snowflake fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Fog") {
+              $("#weatherDiv1").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Mist") {
+              $("#weatherDiv1").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Windy") {
+              $("#weatherDiv1").html(" " + '<i class="fas fa-wind fa-3x">');
+            }
+          }
         }
 
         // Day 2 Forecast
 
-        var degreesFar = (weatherData.list[12].main.temp - 273.15) * 1.80 + 32;
-        var degreesFarRounded = Math.round(degreesFar * 10) / 10;
+        for (var i = 8; i < weatherData.list.length - 24; i++) {
+          var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
+          var degreesFarRounded = Math.round(degreesFar * 10) / 10;
 
-        $("#tempDiv2").text(degreesFarRounded + " °F");
-        $("#windSpeedDiv2").text(weatherData.list[12].wind.speed + " MPH");
+          var timeSlice = weatherData.list[i].dt_txt.slice(11);
 
-        if ((weatherData.list[12].weather[0].main) === "Clouds") {
-          $("#weatherDiv2").html(" " + '<i class="fas fa-cloud fa-3x">');
-        }
-        if ((weatherData.list[12].weather[0].main) === "Clear") {
-          $("#weatherDiv2").html(" " + '<i class="fas fa-sun fa-3x">');
-        }
-        if ((weatherData.list[12].weather[0].main) === "Rain") {
-          $("#weatherDiv2").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
-        }
-        if ((weatherData.list[12].weather[0].main) === "Snow") {
-          $("#weatherDiv2").html(" " + '<i class="far fa-snowflake fa-3x">');
-        }
-        if ((weatherData.list[12].weather[0].main) === "Fog") {
-          $("#weatherDiv2").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[12].weather[0].main) === "Mist") {
-          $("#weatherDiv2").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[12].weather[0].main) === "Windy") {
-          $("#weatherDiv2").html(" " + '<i class="fas fa-wind fa-3x">');
+          // console.log(weatherData.list[i].dt_txt);
+          // console.log(degreesFarRounded);
+          // console.log(weatherData.list[i].weather[0].main);
+          // console.log(weatherData.list[i].wind.speed);
+
+          if (timeSlice === "18:00:00") {
+
+            $("#tempDiv2").text(degreesFarRounded + " °F");
+            $("#windSpeedDiv2").text(weatherData.list[i].wind.speed + " MPH");
+
+            if ((weatherData.list[i].weather[0].main) === "Clouds") {
+              $("#weatherDiv2").html(" " + '<i class="fas fa-cloud fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Clear") {
+              $("#weatherDiv2").html(" " + '<i class="fas fa-sun fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Rain") {
+              $("#weatherDiv2").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Snow") {
+              $("#weatherDiv2").html(" " + '<i class="far fa-snowflake fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Fog") {
+              $("#weatherDiv2").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Mist") {
+              $("#weatherDiv2").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Windy") {
+              $("#weatherDiv2").html(" " + '<i class="fas fa-wind fa-3x">');
+            }
+          }
         }
 
         // Day 3 Forecast
 
-        var degreesFar = (weatherData.list[20].main.temp - 273.15) * 1.80 + 32;
-        var degreesFarRounded = Math.round(degreesFar * 10) / 10;
+        for (var i = 16; i < weatherData.list.length - 16; i++) {
+          var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
+          var degreesFarRounded = Math.round(degreesFar * 10) / 10;
 
-        $("#tempDiv3").text(degreesFarRounded + " °F");
-        $("#windSpeedDiv3").text(weatherData.list[20].wind.speed + " MPH");
+          var timeSlice = weatherData.list[i].dt_txt.slice(11);
 
-        if ((weatherData.list[20].weather[0].main) === "Clouds") {
-          $("#weatherDiv2").html(" " + '<i class="fas fa-cloud fa-3x">');
-        }
-        if ((weatherData.list[20].weather[0].main) === "Clear") {
-          $("#weatherDiv3").html(" " + '<i class="fas fa-sun fa-3x">');
-        }
-        if ((weatherData.list[20].weather[0].main) === "Rain") {
-          $("#weatherDiv3").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
-        }
-        if ((weatherData.list[20].weather[0].main) === "Snow") {
-          $("#weatherDiv3").html(" " + '<i class="far fa-snowflake fa-3x">');
-        }
-        if ((weatherData.list[20].weather[0].main) === "Fog") {
-          $("#weatherDiv3").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[20].weather[0].main) === "Mist") {
-          $("#weatherDiv3").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[20].weather[0].main) === "Windy") {
-          $("#weatherDiv3").html(" " + '<i class="fas fa-wind fa-3x">');
+          // console.log(weatherData.list[i].dt_txt);
+          // console.log(degreesFarRounded);
+          // console.log(weatherData.list[i].weather[0].main);
+          // console.log(weatherData.list[i].wind.speed);
+
+          if (timeSlice === "18:00:00") {
+
+            $("#tempDiv3").text(degreesFarRounded + " °F");
+            $("#windSpeedDiv3").text(weatherData.list[i].wind.speed + " MPH");
+
+            if ((weatherData.list[i].weather[0].main) === "Clouds") {
+              $("#weatherDiv3").html(" " + '<i class="fas fa-cloud fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Clear") {
+              $("#weatherDiv3").html(" " + '<i class="fas fa-sun fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Rain") {
+              $("#weatherDiv3").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Snow") {
+              $("#weatherDiv3").html(" " + '<i class="far fa-snowflake fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Fog") {
+              $("#weatherDiv3").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Mist") {
+              $("#weatherDiv3").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Windy") {
+              $("#weatherDiv3").html(" " + '<i class="fas fa-wind fa-3x">');
+            }
+          }
         }
 
         // Day 4 Forecast
 
-        var degreesFar = (weatherData.list[28].main.temp - 273.15) * 1.80 + 32;
-        var degreesFarRounded = Math.round(degreesFar * 10) / 10;
+        for (var i = 24; i < weatherData.list.length - 8; i++) {
+          var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
+          var degreesFarRounded = Math.round(degreesFar * 10) / 10;
 
-        $("#tempDiv4").text(degreesFarRounded + " °F");
-        $("#windSpeedDiv4").text(weatherData.list[28].wind.speed + " MPH");
+          var timeSlice = weatherData.list[i].dt_txt.slice(11);
 
-        if ((weatherData.list[28].weather[0].main) === "Clouds") {
-          $("#weatherDiv4").html(" " + '<i class="fas fa-cloud fa-3x">');
-        }
-        if ((weatherData.list[28].weather[0].main) === "Clear") {
-          $("#weatherDiv4").html(" " + '<i class="fas fa-sun fa-3x">');
-        }
-        if ((weatherData.list[28].weather[0].main) === "Rain") {
-          $("#weatherDiv4").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
-        }
-        if ((weatherData.list[28].weather[0].main) === "Snow") {
-          $("#weatherDiv4").html(" " + '<i class="far fa-snowflake fa-3x">');
-        }
-        if ((weatherData.list[28].weather[0].main) === "Fog") {
-          $("#weatherDiv4").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[28].weather[0].main) === "Mist") {
-          $("#weatherDiv4").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[28].weather[0].main) === "Windy") {
-          $("#weatherDiv4").html(" " + '<i class="fas fa-wind fa-3x">');
+          // console.log(weatherData.list[i].dt_txt);
+          // console.log(degreesFarRounded);
+          // console.log(weatherData.list[i].weather[0].main);
+          // console.log(weatherData.list[i].wind.speed);
+
+          if (timeSlice === "18:00:00") {
+
+            $("#tempDiv4").text(degreesFarRounded + " °F");
+            $("#windSpeedDiv4").text(weatherData.list[i].wind.speed + " MPH");
+
+            if ((weatherData.list[i].weather[0].main) === "Clouds") {
+              $("#weatherDiv4").html(" " + '<i class="fas fa-cloud fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Clear") {
+              $("#weatherDiv4").html(" " + '<i class="fas fa-sun fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Rain") {
+              $("#weatherDiv4").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Snow") {
+              $("#weatherDiv4").html(" " + '<i class="far fa-snowflake fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Fog") {
+              $("#weatherDiv4").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Mist") {
+              $("#weatherDiv4").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Windy") {
+              $("#weatherDiv4").html(" " + '<i class="fas fa-wind fa-3x">');
+            }
+          }
         }
 
         // Day 5 Forecast
 
-        var degreesFar = (weatherData.list[36].main.temp - 273.15) * 1.80 + 32;
-        var degreesFarRounded = Math.round(degreesFar * 10) / 10;
+        for (var i = 32; i < weatherData.list.length; i++) {
+          var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
+          var degreesFarRounded = Math.round(degreesFar * 10) / 10;
 
-        $("#tempDiv5").text(degreesFarRounded + " °F");
-        $("#windSpeedDiv5").text(weatherData.list[12].wind.speed + " MPH");
+          var timeSlice = weatherData.list[i].dt_txt.slice(11);
 
-        if ((weatherData.list[36].weather[0].main) === "Clouds") {
-          $("#weatherDiv5").html(" " + '<i class="fas fa-cloud fa-3x">');
-        }
-        if ((weatherData.list[36].weather[0].main) === "Clear") {
-          $("#weatherDiv5").html(" " + '<i class="fas fa-sun fa-3x">');
-        }
-        if ((weatherData.list[36].weather[0].main) === "Rain") {
-          $("#weatherDiv5").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
-        }
-        if ((weatherData.list[36].weather[0].main) === "Snow") {
-          $("#weatherDiv5").html(" " + '<i class="far fa-snowflake fa-3x">');
-        }
-        if ((weatherData.list[36].weather[0].main) === "Fog") {
-          $("#weatherDiv5").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[36].weather[0].main) === "Mist") {
-          $("#weatherDiv5").html(" " + '<i class="fas fa-smog fa-3x">');
-        }
-        if ((weatherData.list[36].weather[0].main) === "Windy") {
-          $("#weatherDiv5").html(" " + '<i class="fas fa-wind fa-3x">');
-        }
+          // console.log(weatherData.list[i].dt_txt);
+          // console.log(degreesFarRounded);
+          // console.log(weatherData.list[i].weather[0].main);
+          // console.log(weatherData.list[i].wind.speed);
 
+          if (timeSlice === "18:00:00") {
 
+            $("#tempDiv5").text(degreesFarRounded + " °F");
+            $("#windSpeedDiv5").text(weatherData.list[i].wind.speed + " MPH");
+
+            if ((weatherData.list[i].weather[0].main) === "Clouds") {
+              $("#weatherDiv5").html(" " + '<i class="fas fa-cloud fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Clear") {
+              $("#weatherDiv5").html(" " + '<i class="fas fa-sun fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Rain") {
+              $("#weatherDiv5").html(" " + '<i class="fas fa-cloud-rain fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Snow") {
+              $("#weatherDiv5").html(" " + '<i class="far fa-snowflake fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Fog") {
+              $("#weatherDiv5").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Mist") {
+              $("#weatherDiv5").html(" " + '<i class="fas fa-smog fa-3x">');
+            }
+            if ((weatherData.list[i].weather[0].main) === "Windy") {
+              $("#weatherDiv5").html(" " + '<i class="fas fa-wind fa-3x">');
+            }
+          }
+        }
       })
+
       var nationlParkQueryURL2 = "https://developer.nps.gov/api/v1/events?parkCode=" + parkCode + "&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR"
       $.ajax({
         url: nationlParkQueryURL2,
@@ -276,7 +335,7 @@ $(".stateDropdown").on("change", function (e) {
         console.log(events)
 
         if (events.total === "0") {
-          console.log("bruh")
+
           var containerDiv = $("<div class='s12 scrollsSpy'></div>");
 
           var cardDiv = $("<div class='card horizontal'></div>")
@@ -294,8 +353,8 @@ $(".stateDropdown").on("change", function (e) {
 
           $(containerDiv).append(cardDiv);
           $(".eventInfoHere").prepend(containerDiv);
-         return 
-        } 
+          return
+        }
 
         for (var i = 0; i < 5; i++) {
           var containerDiv = $("<div class='s12 scrollsSpy'></div>");
@@ -328,7 +387,7 @@ $(".stateDropdown").on("change", function (e) {
           $(containerDiv).append(cardDiv);
           $(".eventInfoHere").prepend(containerDiv);
 
-          
+
 
         }
       })
