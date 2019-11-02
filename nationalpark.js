@@ -33,8 +33,8 @@ function initApp() {
 // National Park API Key = fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR
 // Dark Sky API Key = 4b7bc744718f602b04b475fb64a354f5
 $(".stateDropdown").on("change", function (e) {
-  console.log(this.value);
 
+  console.log(this.value);
 
   var stateCode = this.value
   var nationlParkQueryURL = "https://developer.nps.gov/api/v1/parks?q=national%20park&stateCode=" + stateCode + "&fields=images&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR";
@@ -47,14 +47,13 @@ $(".stateDropdown").on("change", function (e) {
   }).then(function (states) {
     console.log(states);
     // console.log(weatherData.data[0].latLong);
-    for (var i = 0; i < states.data[i]; i++) {
-      var latLong = states.data[i].latLong;
-      var lat = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
-      console.log(lat);
-      var long = latLong.slice(latLong.indexOf(':', latLong.indexOf(':') + 1) + 1);
-      console.log(long);
-    }
-
+    // for (var i = 0; i < states.data[i]; i++) {
+    //   var latLong = states.data[i].latLong;
+    //   var lat = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
+    //   console.log(lat);
+    //   var long = latLong.slice(latLong.indexOf(':', latLong.indexOf(':') + 1) + 1);
+    //   console.log(long);
+    // }
 
     for (var i = 0; i < states.data.length; i++) {
       var containerDiv = $("<div class='s12 scrollsSpy'></div>");
@@ -100,14 +99,20 @@ $(".stateDropdown").on("change", function (e) {
       $(cardAction).append(cardBtn);
       $(cardDiv).append(cardAction);
 
+      console.log(cardBtn);
+
       $(containerDiv).append(cardDiv);
       $(".parkInfoHere").prepend(containerDiv);
 
+
     }
 
-    $(".selectBtn").on("click", function (e) {
+    $(".card-action").on("click", ".selectBtn", function () {
 
-      var openWeatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&APPID=e2ebd3f5faa1edbbcedec73ed5986c0f";
+      var parkLat = $(this).attr("lat");
+      var parkLong = $(this).attr("long");
+
+      var openWeatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + parkLat + "&lon=" + parkLong + "&APPID=e2ebd3f5faa1edbbcedec73ed5986c0f";
 
       $.ajax({
         url: openWeatherQueryURL,
@@ -115,6 +120,7 @@ $(".stateDropdown").on("change", function (e) {
       }).then(function (weatherData) {
 
         console.log(weatherData);
+
 
         // Day 1 Forecast
 
@@ -327,7 +333,9 @@ $(".stateDropdown").on("change", function (e) {
         }
       })
 
-      var nationlParkQueryURL2 = "https://developer.nps.gov/api/v1/events?parkCode=" + parkCode + "&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR"
+      var npCode = $(this).attr("parkCode");
+
+      var nationlParkQueryURL2 = "https://developer.nps.gov/api/v1/events?parkCode=" + npCode + "&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR"
       $.ajax({
         url: nationlParkQueryURL2,
         method: "GET"
@@ -386,11 +394,10 @@ $(".stateDropdown").on("change", function (e) {
 
           $(containerDiv).append(cardDiv);
           $(".eventInfoHere").prepend(containerDiv);
-
-
-
         }
       })
     })
   })
 })
+
+
