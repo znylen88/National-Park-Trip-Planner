@@ -17,8 +17,9 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col s3 m3">
+            <div class="col s6 m3 l3">
                 <div class="input-field">
+                    <!-- State Dropdown -->
                     <select class="stateDropdown browser-default">
                         <option>Select a state</option>
                         <option value="AK">Alaska</option>
@@ -57,16 +58,19 @@
             <div class="collapsibleDiv col s12 m9 l9">
                 <ul class="collapsible">
                     <li>
+                        <!-- Park Info Container -->
                         <div class="collapsible-header"><i class="material-icons">filter_hdr</i>Park Info</div>
                         <div class="collapsible-body">
-                                <div class="parkInfoHere">	
-                                    </div> 
+                            <div class="parkInfoHere">
+                            </div>
                         </div>
                     </li>
                     <li>
+                        <!-- Weather Forecast Container -->
                         <div class="collapsible-header"><i class="material-icons">cloud_queue</i>Weather Forecast</div>
                         <div class="collapsible-body">
                             <div class="row">
+                                <!-- Day 1 Weather Forecast Div -->
                                 <div id="day1" class="card col s12 col m5 col l3 col xl2">
                                     <div id="tempDiv1" class="tempDiv"></div>
                                     <br>
@@ -74,6 +78,7 @@
                                     <br>
                                     <div id="windSpeedDiv1" class="windSpeedDiv"></div>
                                 </div>
+                                <!-- Day 2 Weather Forecast Div -->
                                 <div id="day2" class="card col s12 col m5 col l3 col xl2">
                                     <div id="tempDiv2" class="tempDiv"></div>
                                     <br>
@@ -81,6 +86,7 @@
                                     <br>
                                     <div id="windSpeedDiv2" class="windSpeedDiv"></div>
                                 </div>
+                                <!-- Day 3 Weather Forecast Div -->
                                 <div id="day3" class="card col s12 col m5 col l3 col xl2">
                                     <div id="tempDiv3" class="tempDiv"></div>
                                     <br>
@@ -88,6 +94,7 @@
                                     <br>
                                     <div id="windSpeedDiv3" class="windSpeedDiv"></div>
                                 </div>
+                                <!-- Day 4 Weather Forecast Div -->
                                 <div id="day4" class="card col s12 col m5 col l3 col xl2">
                                     <div id="tempDiv4" class="tempDiv"></div>
                                     <br>
@@ -95,6 +102,7 @@
                                     <br>
                                     <div id="windSpeedDiv4" class="windSpeedDiv"></div>
                                 </div>
+                                <!-- Day 5 Weather Forecast Div -->
                                 <div id="day5" class="card col s12 col m5 col l3 col xl2">
                                     <div id="tempDiv5" class="tempDiv"></div>
                                     <br>
@@ -106,6 +114,7 @@
                         </div>
                     </li>
                     <li>
+                        <!-- Park Events Container -->
                         <div class="collapsible-header"><i class="material-icons">date_range</i>Events</div>
                         <div class="collapsible-body">
                             <div class="eventInfoHere">
@@ -121,4 +130,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="nationalpark.js"></script>
 </body>
+
 </html>

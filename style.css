@@ -1,7 +1,7 @@
 html {
     font-family: GillSans, Calibri, Trebuchet, sans-serif;
     font-size: 20px;
-  }
+}
 
 body{
     background-image: url("assets/nationalpark.jpg");
@@ -18,15 +18,14 @@ body{
 }
 @keyframes slidein {
     from {
-      margin-left: 100%;
-      width: 250%; 
+    margin-left: 100%;
+    width: 250%; 
     }
-  
     to {
-      margin-left: 0%;
-      width: 100%;
+    margin-left: 0%;
+    width: 100%;
     }
-  }
+}
 
 .collapsible-body{
     background-color: rgba(255,255,255,.5);
@@ -39,7 +38,8 @@ body{
 .card {
     height: inherit;
     background-color: rgb(22, 160, 160);
-    margin: 20px;
+    margin: 10px;
+    margin-bottom: 20px;
     border-radius: 5px;
     color: white;
     border: rgb(66, 66, 66) solid 1px;

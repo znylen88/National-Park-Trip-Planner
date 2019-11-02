@@ -1,6 +1,4 @@
-// $(document).ready(function(){
-//   $('.scrollspy').scrollSpy();
-// });
+// Collapsible and dropdown functions
 
 $('.dropdown-trigger').dropdown();
 
@@ -26,36 +24,29 @@ $(document).ready(initApp)
 
 function initApp() {
 
-  console.log('Initializing app')
+  // console.log('Initializing app')
+
   $('select').not('.disabled').formSelect();
 }
 
-// National Park API Key = fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR
-// Dark Sky API Key = 4b7bc744718f602b04b475fb64a354f5
-$(".stateDropdown").on("change", function (e) {
+// State dropdown "onchange" event
 
-  console.log(this.value);
+$(".stateDropdown").on("change", function (e) {
 
   var stateCode = this.value
   var nationlParkQueryURL = "https://developer.nps.gov/api/v1/parks?q=national%20park&stateCode=" + stateCode + "&fields=images&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR";
 
-
+  // AJAX call to National Park API
 
   $.ajax({
     url: nationlParkQueryURL,
     method: "GET"
   }).then(function (states) {
-    console.log(states);
-    // console.log(weatherData.data[0].latLong);
-    // for (var i = 0; i < states.data[i]; i++) {
-    //   var latLong = states.data[i].latLong;
-    //   var lat = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
-    //   console.log(lat);
-    //   var long = latLong.slice(latLong.indexOf(':', latLong.indexOf(':') + 1) + 1);
-    //   console.log(long);
-    // }
+
+    // For loop to dynamically create National Park data to the container 
 
     for (var i = 0; i < states.data.length; i++) {
+
       var containerDiv = $("<div class='s12 scrollsSpy'></div>");
 
       var cardDiv = $("<div class='card horizontal'></div>")
@@ -81,11 +72,15 @@ $(".stateDropdown").on("change", function (e) {
       $(cardStackedDiv).append(cardContent);
       $(cardDiv).append(cardStackedDiv);
 
+      // Gathering coordinate data for each park and slicing into usable data
+
       var latLong = states.data[i].latLong;
       var lat = latLong.slice(latLong.indexOf(':') + 1, latLong.indexOf(','));
       var long = latLong.slice(latLong.indexOf(':', latLong.indexOf(':') + 1) + 1);
 
       var parkCode = states.data[i].parkCode;
+
+      // Creating buttons for each park with various attributes attached
 
       var cardAction = $("<div class='card-action'></div>");
       var cardBtn = $("<button>Select</button>");
@@ -99,18 +94,20 @@ $(".stateDropdown").on("change", function (e) {
       $(cardAction).append(cardBtn);
       $(cardDiv).append(cardAction);
 
-      console.log(cardBtn);
+      // console.log(cardBtn);
 
       $(containerDiv).append(cardDiv);
       $(".parkInfoHere").prepend(containerDiv);
-
-
     }
+
+    // Click event on created park buttons that render weather and events
 
     $(".card-action").on("click", ".selectBtn", function () {
 
       var parkLat = $(this).attr("lat");
       var parkLong = $(this).attr("long");
+
+      // Open Weather API AJAX call
 
       var openWeatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + parkLat + "&lon=" + parkLong + "&APPID=e2ebd3f5faa1edbbcedec73ed5986c0f";
 
@@ -119,21 +116,15 @@ $(".stateDropdown").on("change", function (e) {
         method: "GET"
       }).then(function (weatherData) {
 
-        console.log(weatherData);
-
+        // console.log(weatherData);
 
         // Day 1 Forecast
 
         for (var i = 0; i < weatherData.list.length - 32; i++) {
+
           var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
           var degreesFarRounded = Math.round(degreesFar * 10) / 10;
-
           var timeSlice = weatherData.list[i].dt_txt.slice(11);
-
-          // console.log(weatherData.list[i].dt_txt);
-          // console.log(degreesFarRounded);
-          // console.log(weatherData.list[i].weather[0].main);
-          // console.log(weatherData.list[i].wind.speed);
 
           if (timeSlice === "18:00:00") {
 
@@ -167,15 +158,10 @@ $(".stateDropdown").on("change", function (e) {
         // Day 2 Forecast
 
         for (var i = 8; i < weatherData.list.length - 24; i++) {
+
           var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
           var degreesFarRounded = Math.round(degreesFar * 10) / 10;
-
           var timeSlice = weatherData.list[i].dt_txt.slice(11);
-
-          // console.log(weatherData.list[i].dt_txt);
-          // console.log(degreesFarRounded);
-          // console.log(weatherData.list[i].weather[0].main);
-          // console.log(weatherData.list[i].wind.speed);
 
           if (timeSlice === "18:00:00") {
 
@@ -209,15 +195,10 @@ $(".stateDropdown").on("change", function (e) {
         // Day 3 Forecast
 
         for (var i = 16; i < weatherData.list.length - 16; i++) {
+
           var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
           var degreesFarRounded = Math.round(degreesFar * 10) / 10;
-
           var timeSlice = weatherData.list[i].dt_txt.slice(11);
-
-          // console.log(weatherData.list[i].dt_txt);
-          // console.log(degreesFarRounded);
-          // console.log(weatherData.list[i].weather[0].main);
-          // console.log(weatherData.list[i].wind.speed);
 
           if (timeSlice === "18:00:00") {
 
@@ -251,15 +232,10 @@ $(".stateDropdown").on("change", function (e) {
         // Day 4 Forecast
 
         for (var i = 24; i < weatherData.list.length - 8; i++) {
+
           var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
           var degreesFarRounded = Math.round(degreesFar * 10) / 10;
-
           var timeSlice = weatherData.list[i].dt_txt.slice(11);
-
-          // console.log(weatherData.list[i].dt_txt);
-          // console.log(degreesFarRounded);
-          // console.log(weatherData.list[i].weather[0].main);
-          // console.log(weatherData.list[i].wind.speed);
 
           if (timeSlice === "18:00:00") {
 
@@ -293,15 +269,10 @@ $(".stateDropdown").on("change", function (e) {
         // Day 5 Forecast
 
         for (var i = 32; i < weatherData.list.length; i++) {
+
           var degreesFar = (weatherData.list[i].main.temp - 273.15) * 1.80 + 32;
           var degreesFarRounded = Math.round(degreesFar * 10) / 10;
-
           var timeSlice = weatherData.list[i].dt_txt.slice(11);
-
-          // console.log(weatherData.list[i].dt_txt);
-          // console.log(degreesFarRounded);
-          // console.log(weatherData.list[i].weather[0].main);
-          // console.log(weatherData.list[i].wind.speed);
 
           if (timeSlice === "18:00:00") {
 
@@ -333,14 +304,17 @@ $(".stateDropdown").on("change", function (e) {
         }
       })
 
-      var npCode = $(this).attr("parkCode");
+      var natParkCode = $(this).attr("parkCode");
 
-      var nationlParkQueryURL2 = "https://developer.nps.gov/api/v1/events?parkCode=" + npCode + "&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR"
+      // AJAX call to gather park events via National Parks API
+
+      var nationlParkQueryURL2 = "https://developer.nps.gov/api/v1/events?parkCode=" + natParkCode + "&api_key=fpuahTpdjjgnndV1T0yTSrzifFyZQevFQfcxDsUR"
       $.ajax({
         url: nationlParkQueryURL2,
         method: "GET"
       }).then(function (events) {
-        console.log(events)
+
+        // If no events found, render a "no events" text inside the events container
 
         if (events.total === "0") {
 
@@ -361,37 +335,40 @@ $(".stateDropdown").on("change", function (e) {
 
           $(containerDiv).append(cardDiv);
           $(".eventInfoHere").prepend(containerDiv);
+
           return
         }
 
+        // Render park events to the events container
+
         for (var i = 0; i < 5; i++) {
           var containerDiv = $("<div class='s12 scrollsSpy'></div>");
-
           var cardDiv = $("<div class='card horizontal'></div>")
+
           $(cardDiv).attr("style", "padding: 15px; display: flex; flex-direction: column;")
 
           var titleDiv = $("<div>")
           var cardTitle = $("<h6>").text(events.data[i].title);
+
           $(cardDiv).append(cardTitle);
 
-
           var cardStackedDiv = $("<div class='card-stacked'></div>");
-
           var cardContent = $("<div class='card-content'></div>");
-
           var parkInfo = $("<p>").html(events.data[i].description);
+
           $(cardContent).append(parkInfo);
           $(cardStackedDiv).append(cardContent);
           $(cardDiv).append(cardStackedDiv);
 
           var parkInfo2 = $("<p>").text("Date: " + events.data[i].recurrencedateend);
+
           $(cardContent).append(parkInfo2);
           $(cardStackedDiv).append(cardContent);
           $(cardDiv).append(cardStackedDiv);
 
           var cardAction = $("<div class='card-action'></div>");
-          $(cardDiv).append(cardAction);
 
+          $(cardDiv).append(cardAction);
           $(containerDiv).append(cardDiv);
           $(".eventInfoHere").prepend(containerDiv);
         }
