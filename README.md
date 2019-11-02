@@ -5,13 +5,19 @@ This project was created to allow users to easily plan a National Park visit bas
 
 ## Usage
 1. The user will be shown a National Park list based on the state selection they make in the state dropdown menu.
+
 2. All parks in the selected state will populate the first collapsible container. Brief park information will be displayed along with a image of the park. Below this image, a "select" button will be created.
+
 3. Once the user has chosen a park of their liking, they will click the button associated with that park which will then render a "5-day forecast" for the selected park in the second collapsible container along with "park events" in the third. 
 
 ## Credits
+
 Nic Serra (GitHub: nserra310) - HTML/CSS/Google Materialize
+
 Sean Thomason (GitHub: Sthomason161) - HTML/CSS/Google Materialize
+
 Sina Farheidar-Smith (GitHub: sinafarheidar) - National Parks API and Javascript/JQuery
+
 Zach Nylen (GitHub: znylen88) - Open Weather API and Javascript/JQuery
 
 ## 3rd Party APIs
